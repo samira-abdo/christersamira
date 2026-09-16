@@ -1,0 +1,70 @@
+<!--
+  Email navigation bar — Shopify Email / Klaviyo / Mailchimp safe.
+  Paste into a "Custom HTML" / "Code" block.
+  Swap the href="" values for your own collection URLs.
+-->
+<style type="text/css">
+  /* Only Apple Mail, iOS, Gmail app and most webmail read this.
+     Outlook ignores it and falls back to the inline styles below. */
+  a.nav-link:hover { text-decoration: underline !important; }
+
+  @media only screen and (max-width: 480px) {
+    .nav-link {
+      font-size: 12px !important;
+      letter-spacing: 0.4px !important;
+    }
+    .nav-cell {
+      padding-left: 7px !important;
+      padding-right: 7px !important;
+    }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;background-color:#ffffff;">
+  <tr>
+    <td align="center" style="padding:0;">
+
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="width:600px;max-width:600px;border-collapse:collapse;">
+
+        <!-- dotted divider line -->
+        <tr>
+          <td height="1" style="font-size:0;line-height:0;border-top:1px dotted #bbbbbb;">&nbsp;</td>
+        </tr>
+
+        <!-- nav row -->
+        <tr>
+          <td align="center" style="padding:18px 10px 18px 10px;">
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;">
+              <tr>
+                <td class="nav-cell" align="center" style="padding:0 14px;">
+                  <a class="nav-link" href="https://your-store.com/collections/new-arrivals"
+                     style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Just Landed</a>
+                </td>
+                <td class="nav-cell" align="center" style="padding:0 14px;">
+                  <a class="nav-link" href="https://your-store.com/collections/men"
+                     style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Men</a>
+                </td>
+                <td class="nav-cell" align="center" style="padding:0 14px;">
+                  <a class="nav-link" href="https://your-store.com/collections/women"
+                     style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Women</a>
+                </td>
+                <td class="nav-cell" align="center" style="padding:0 14px;">
+                  <a class="nav-link" href="https://your-store.com/collections/kids"
+                     style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Kids</a>
+                </td>
+                <td class="nav-cell" align="center" style="padding:0 14px;">
+                  <a class="nav-link" href="https://your-store.com/collections/sale"
+                     style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#e60023;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Sale</a>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
