@@ -1,0 +1,70 @@
+<!--
+  Three-column brand row — Shopify Email / Klaviyo / Mailchimp safe.
+  Source images are 1080x1080 (square), displayed at 186x186 inside a
+  600px email, so they stay sharp on retina screens.
+
+  Swap the src="" (image URL) and href="" (link) on each of the three
+  columns, and the alt="" text with the real brand names.
+
+  Layout: 186 + 21 + 186 + 21 + 186 = 600
+  On phones the three columns stack full-width.
+-->
+<style type="text/css">
+  @media only screen and (max-width: 480px) {
+    .brand-table, .brand-table tbody, .brand-table tr { display: block !important; width: 100% !important; }
+    .brand-col { display: block !important; width: 100% !important; max-width: 100% !important; }
+    .brand-col img { width: 100% !important; height: auto !important; max-width: 100% !important; }
+    .brand-gutter { display: block !important; width: 100% !important; height: 20px !important; line-height: 20px !important; font-size: 0 !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;border-collapse:collapse;margin:0 auto;background-color:#ffffff;">
+  <tr>
+    <td align="center" style="padding:20px 0;text-align:center;">
+
+      <table role="presentation" class="brand-table" width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;max-width:600px;border-collapse:collapse;margin:0 auto;">
+        <tr>
+
+          <!-- BRAND 1 -->
+          <td class="brand-col" width="186" align="center" valign="top" style="width:186px;text-align:center;">
+            <a href="https://your-store.com/collections/brand-one" style="text-decoration:none;">
+              <img src="https://your-cdn.com/brand-one-1080x1080.jpg" alt="Brand One" width="186" height="186"
+                   style="display:block;width:186px;height:186px;max-width:100%;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+            </a>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;letter-spacing:0.5px;padding-top:10px;">
+              <a href="https://your-store.com/collections/brand-one" style="color:#111111;text-decoration:none;">Brand One</a>
+            </div>
+          </td>
+
+          <td class="brand-gutter" width="21" style="width:21px;font-size:0;line-height:0;">&nbsp;</td>
+
+          <!-- BRAND 2 -->
+          <td class="brand-col" width="186" align="center" valign="top" style="width:186px;text-align:center;">
+            <a href="https://your-store.com/collections/brand-two" style="text-decoration:none;">
+              <img src="https://your-cdn.com/brand-two-1080x1080.jpg" alt="Brand Two" width="186" height="186"
+                   style="display:block;width:186px;height:186px;max-width:100%;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+            </a>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;letter-spacing:0.5px;padding-top:10px;">
+              <a href="https://your-store.com/collections/brand-two" style="color:#111111;text-decoration:none;">Brand Two</a>
+            </div>
+          </td>
+
+          <td class="brand-gutter" width="21" style="width:21px;font-size:0;line-height:0;">&nbsp;</td>
+
+          <!-- BRAND 3 -->
+          <td class="brand-col" width="186" align="center" valign="top" style="width:186px;text-align:center;">
+            <a href="https://your-store.com/collections/brand-three" style="text-decoration:none;">
+              <img src="https://your-cdn.com/brand-three-1080x1080.jpg" alt="Brand Three" width="186" height="186"
+                   style="display:block;width:186px;height:186px;max-width:100%;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;">
+            </a>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;letter-spacing:0.5px;padding-top:10px;">
+              <a href="https://your-store.com/collections/brand-three" style="color:#111111;text-decoration:none;">Brand Three</a>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
