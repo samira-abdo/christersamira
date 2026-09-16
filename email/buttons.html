@@ -1,0 +1,47 @@
+<!--
+  Email button pair — Shopify Email / Klaviyo / Mailchimp safe.
+  Primary (solid black) + secondary (outlined) side by side, centered.
+  Swap the href="" values for your own URLs.
+
+  Buttons are built from table cells, not <button>/<div>, so the padding
+  and background survive Outlook's Word rendering engine. On phones the
+  padding and font shrink so the pair stays on one line down to 320px
+  (no display:block stacking, which breaks alignment in several clients).
+-->
+<style type="text/css">
+  a.btn-link:hover { opacity: 0.85; }
+
+  @media only screen and (max-width: 480px) {
+    .btn-link  { font-size: 14px !important; padding-left: 20px !important; padding-right: 20px !important; }
+    .btn-gap   { width: 12px !important; }
+  }
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;border-collapse:collapse;margin:0 auto;background-color:#ffffff;">
+  <tr>
+    <td align="center" style="padding:24px 16px;text-align:center;">
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:separate;margin:0 auto;">
+        <tr>
+
+          <!-- PRIMARY: solid black -->
+          <td align="center" bgcolor="#000000" style="background-color:#000000;text-align:center;">
+            <a class="btn-link" href="https://your-store.com/collections/all"
+               style="display:inline-block;padding:16px 34px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:20px;color:#ffffff;text-decoration:none;white-space:nowrap;">Shop now</a>
+          </td>
+
+          <!-- gap between the buttons -->
+          <td class="btn-gap" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+
+          <!-- SECONDARY: white with a light border -->
+          <td align="center" bgcolor="#ffffff" style="background-color:#ffffff;border:1px solid #dcdcdc;text-align:center;">
+            <a class="btn-link" href="https://your-store.com/pages/store-locator"
+               style="display:inline-block;padding:15px 33px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:20px;color:#111111;text-decoration:none;white-space:nowrap;">Visit a store</a>
+          </td>
+
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
