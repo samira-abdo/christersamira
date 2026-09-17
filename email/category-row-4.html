@@ -1,88 +1,106 @@
 <!--
-  Four-column category row — Shopify Email / Klaviyo / Mailchimp safe.
-  Square tile image + caption underneath, both clickable.
+  Four-column category row — Mike Sport fall 2026.
+  Lifestyle Shoes / Running Shoes / Hiking Shoes / Accessories.
 
-  Desktop maths (600px email): 132 + 24 + 132 + 24 + 132 + 24 + 132 = 600
-  Phones: reflows to a 2 x 2 grid (four across is too small to read).
+  Built as a "fluid hybrid": each column is an inline-block div capped at
+  150px. Four fit across a 600px email; on a phone only two fit per line,
+  so it becomes a 2 x 2 grid BY ITSELF — no media query needed. Several
+  email builders strip the <style> block, which is why media-query
+  stacking was not working.
 
-  Live Mike Sport links and Shopify CDN images are already filled in.
-  Note the &amp; in the image URLs: that is the correct HTML escape for
-  a literal & inside an attribute, and email clients decode it back.
+  Outlook ignores inline-block, so the <!--[if mso]> ghost tables keep the
+  four columns in a row there. Those comments are load-bearing.
+
+  Column maths: 4 x 144px wrapper (132px image + 6px padding each side)
+  = 576px, which leaves slack inside a 600px template so the fourth
+  column cannot get bumped onto a second row by the template padding.
 -->
-<style type="text/css">
-  @media only screen and (max-width: 480px) {
-    .cat-table, .cat-table tbody, .cat-table tr { display: block !important; width: 100% !important; }
-    .cat-col {
-      display: inline-block !important;
-      width: 48% !important;
-      max-width: 48% !important;
-      padding-bottom: 22px !important;
-      vertical-align: top !important;
-    }
-    .cat-col img { width: 100% !important; height: auto !important; max-width: 160px !important; }
-    .cat-gutter { display: none !important; }
-  }
-</style>
-
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;border-collapse:collapse;margin:0 auto;background-color:#ffffff;">
   <tr>
-    <td align="center" style="padding:24px 10px;text-align:center;">
+    <td align="center" style="padding:24px 0;text-align:center;font-size:0;line-height:0;">
 
-      <table role="presentation" class="cat-table" width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;max-width:600px;border-collapse:collapse;margin:0 auto;">
-        <tr>
+      <!--[if mso]>
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr>
+      <td width="144" align="center" valign="top">
+      <![endif]-->
 
-          <!-- CATEGORY 1 -->
-          <td class="cat-col" width="132" align="center" valign="top" style="width:132px;text-align:center;">
-            <a href="https://lb.mikesport.com/collections/lifestyle-shoes-fall-2026?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Lifestyle_Shoes.png?v=1789121753&amp;width=352" alt="Lifestyle Shoes" width="132" height="132"
-                   style="display:block;width:132px;height:132px;max-width:100%;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
-            </a>
-            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
-              <a href="https://lb.mikesport.com/collections/lifestyle-shoes-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Lifestyle Shoes</a>
-            </div>
-          </td>
+      <!-- LIFESTYLE SHOES -->
+      <div style="display:inline-block;width:100%;max-width:144px;vertical-align:top;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          <tr>
+            <td align="center" style="padding:0 6px 22px 6px;text-align:center;">
+              <a href="https://lb.mikesport.com/collections/lifestyle-shoes-fall-2026?filter.v.availability=1" style="text-decoration:none;">
+                <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Lifestyle_Shoes.png?v=1789121753&amp;width=352" alt="Lifestyle Shoes" width="132"
+                     style="display:block;width:100%;max-width:132px;height:auto;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
+              </a>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
+                <a href="https://lb.mikesport.com/collections/lifestyle-shoes-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Lifestyle Shoes</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-          <td class="cat-gutter" width="24" style="width:24px;font-size:0;line-height:0;">&nbsp;</td>
+      <!--[if mso]></td><td width="144" align="center" valign="top"><![endif]-->
 
-          <!-- CATEGORY 2 -->
-          <td class="cat-col" width="132" align="center" valign="top" style="width:132px;text-align:center;">
-            <a href="https://lb.mikesport.com/collections/running-shoes-fall-2026?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Running_shoes.png?v=1789121830&amp;width=352" alt="Running Shoes" width="132" height="132"
-                   style="display:block;width:132px;height:132px;max-width:100%;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
-            </a>
-            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
-              <a href="https://lb.mikesport.com/collections/running-shoes-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Running Shoes</a>
-            </div>
-          </td>
+      <!-- RUNNING SHOES -->
+      <div style="display:inline-block;width:100%;max-width:144px;vertical-align:top;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          <tr>
+            <td align="center" style="padding:0 6px 22px 6px;text-align:center;">
+              <a href="https://lb.mikesport.com/collections/running-shoes-fall-2026?filter.v.availability=1" style="text-decoration:none;">
+                <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Running_shoes.png?v=1789121830&amp;width=352" alt="Running Shoes" width="132"
+                     style="display:block;width:100%;max-width:132px;height:auto;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
+              </a>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
+                <a href="https://lb.mikesport.com/collections/running-shoes-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Running Shoes</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-          <td class="cat-gutter" width="24" style="width:24px;font-size:0;line-height:0;">&nbsp;</td>
+      <!--[if mso]></td><td width="144" align="center" valign="top"><![endif]-->
 
-          <!-- CATEGORY 3 -->
-          <td class="cat-col" width="132" align="center" valign="top" style="width:132px;text-align:center;">
-            <a href="https://lb.mikesport.com/collections/hiking-shoes?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Hiking_shoes.png?v=1789121836&amp;width=352" alt="Hiking Shoes" width="132" height="132"
-                   style="display:block;width:132px;height:132px;max-width:100%;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
-            </a>
-            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
-              <a href="https://lb.mikesport.com/collections/hiking-shoes?filter.v.availability=1" style="color:#111111;text-decoration:none;">Hiking Shoes</a>
-            </div>
-          </td>
+      <!-- HIKING SHOES -->
+      <div style="display:inline-block;width:100%;max-width:144px;vertical-align:top;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          <tr>
+            <td align="center" style="padding:0 6px 22px 6px;text-align:center;">
+              <a href="https://lb.mikesport.com/collections/hiking-shoes?filter.v.availability=1" style="text-decoration:none;">
+                <img src="https://lb.mikesport.com/cdn/shop/files/101_-_LB_Sep_New_arrivals_fall_icons-Hiking_shoes.png?v=1789121836&amp;width=352" alt="Hiking Shoes" width="132"
+                     style="display:block;width:100%;max-width:132px;height:auto;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
+              </a>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
+                <a href="https://lb.mikesport.com/collections/hiking-shoes?filter.v.availability=1" style="color:#111111;text-decoration:none;">Hiking Shoes</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-          <td class="cat-gutter" width="24" style="width:24px;font-size:0;line-height:0;">&nbsp;</td>
+      <!--[if mso]></td><td width="144" align="center" valign="top"><![endif]-->
 
-          <!-- CATEGORY 4 -->
-          <td class="cat-col" width="132" align="center" valign="top" style="width:132px;text-align:center;">
-            <a href="https://lb.mikesport.com/collections/accessories-fall-2026?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://lb.mikesport.com/cdn/shop/files/102_-_LB_Sep_New_arrivals_fall_icons-Accessories.png?v=1789129130&amp;width=352" alt="Accessories" width="132" height="132"
-                   style="display:block;width:132px;height:132px;max-width:100%;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
-            </a>
-            <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
-              <a href="https://lb.mikesport.com/collections/accessories-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Accessories</a>
-            </div>
-          </td>
+      <!-- ACCESSORIES -->
+      <div style="display:inline-block;width:100%;max-width:144px;vertical-align:top;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          <tr>
+            <td align="center" style="padding:0 6px 22px 6px;text-align:center;">
+              <a href="https://lb.mikesport.com/collections/accessories-fall-2026?filter.v.availability=1" style="text-decoration:none;">
+                <img src="https://lb.mikesport.com/cdn/shop/files/102_-_LB_Sep_New_arrivals_fall_icons-Accessories.png?v=1789129130&amp;width=352" alt="Accessories" width="132"
+                     style="display:block;width:100%;max-width:132px;height:auto;margin:0 auto;border:0;outline:none;border-radius:12px;-ms-interpolation-mode:bicubic;">
+              </a>
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:18px;color:#111111;padding-top:12px;">
+                <a href="https://lb.mikesport.com/collections/accessories-fall-2026?filter.v.availability=1" style="color:#111111;text-decoration:none;">Accessories</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-        </tr>
-      </table>
+      <!--[if mso]>
+      </td></tr></table>
+      <![endif]-->
 
     </td>
   </tr>
