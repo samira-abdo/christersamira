@@ -1,26 +1,17 @@
 <!--
-  Email navigation bar — Shopify Email / Klaviyo / Mailchimp safe.
-  Paste into a "Custom HTML" / "Code" block.
-  Swap the href="" values for your own collection URLs.
+  Email navigation bar — Mike Sport fall 2026.
 
-  Centering strategy (desktop + mobile):
-    - align="center"        -> Outlook (Word engine), which ignores margin:auto
-    - text-align:center     -> Gmail / webmail / Apple Mail on the parent cell
-    - margin:0 auto         -> everything else, for the nested tables
-  All three are applied together so no client can fall back to left-aligned.
+  Base padding is 9px a side so all five links still fit on a 320px
+  phone WITHOUT the <style> block, in case the builder strips it. The
+  media query below is a bonus, not a requirement: where it survives it
+  tightens the row a little further on small screens.
 -->
 <style type="text/css">
   a.nav-link:hover { text-decoration: underline !important; }
 
   @media only screen and (max-width: 480px) {
-    .nav-link {
-      font-size: 12px !important;
-      letter-spacing: 0.4px !important;
-    }
-    .nav-cell {
-      padding-left: 7px !important;
-      padding-right: 7px !important;
-    }
+    .nav-link { font-size: 12px !important; letter-spacing: 0.4px !important; }
+    .nav-cell { padding-left: 6px !important; padding-right: 6px !important; }
   }
 </style>
 
@@ -37,28 +28,28 @@
 
         <!-- nav row -->
         <tr>
-          <td align="center" style="padding:18px 10px 18px 10px;text-align:center;">
+          <td align="center" style="padding:18px 6px;text-align:center;">
 
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;margin:0 auto;">
               <tr>
-                <td class="nav-cell" align="center" style="padding:0 14px;text-align:center;">
-                  <a class="nav-link" href="https://your-store.com/collections/new-arrivals"
+                <td class="nav-cell" align="center" style="padding:0 9px;text-align:center;">
+                  <a class="nav-link" href="https://lb.mikesport.com/pages/fall"
                      style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Just Landed</a>
                 </td>
-                <td class="nav-cell" align="center" style="padding:0 14px;text-align:center;">
-                  <a class="nav-link" href="https://your-store.com/collections/men"
+                <td class="nav-cell" align="center" style="padding:0 9px;text-align:center;">
+                  <a class="nav-link" href="https://lb.mikesport.com/collections/men-fall-2026?filter.v.availability=1"
                      style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Men</a>
                 </td>
-                <td class="nav-cell" align="center" style="padding:0 14px;text-align:center;">
-                  <a class="nav-link" href="https://your-store.com/collections/women"
+                <td class="nav-cell" align="center" style="padding:0 9px;text-align:center;">
+                  <a class="nav-link" href="https://lb.mikesport.com/collections/women-fall-2026?filter.v.availability=1"
                      style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Women</a>
                 </td>
-                <td class="nav-cell" align="center" style="padding:0 14px;text-align:center;">
-                  <a class="nav-link" href="https://your-store.com/collections/kids"
+                <td class="nav-cell" align="center" style="padding:0 9px;text-align:center;">
+                  <a class="nav-link" href="https://lb.mikesport.com/collections/kids-fall-2026?filter.v.availability=1"
                      style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#111111;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Kids</a>
                 </td>
-                <td class="nav-cell" align="center" style="padding:0 14px;text-align:center;">
-                  <a class="nav-link" href="https://your-store.com/collections/sale"
+                <td class="nav-cell" align="center" style="padding:0 9px;text-align:center;">
+                  <a class="nav-link" href="https://lb.mikesport.com/pages/the-outlet"
                      style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:#e60023;text-decoration:none;letter-spacing:0.5px;white-space:nowrap;display:inline-block;">Sale</a>
                 </td>
               </tr>
