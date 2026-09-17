@@ -1,109 +1,96 @@
 <!--
-  Brand logo grid, 3 x 3 — dark-mode hardened.
+  Brand logo grid, 3 x 3 — Mike Sport.
 
-  WHY DARK MODE BREAKS LOGO GRIDS
-  Clients fall into three groups:
-    1. No dark mode of your email (Apple Mail default, most webmail):
-       your bgcolor is used as-is.
-    2. Respect your own dark styles (Apple Mail, iOS 13+, Outlook mac):
-       the @media (prefers-color-scheme: dark) block below applies.
-    3. FORCE their own inversion (Outlook.com, Outlook Windows/iOS/
-       Android, Gmail app on some Android builds): they rewrite your
-       background and text colours whatever you declare. bgcolor,
-       background-color and !important are all ignored. There is no CSS
-       that stops this.
+  Every cell is a fixed 200px third of the 600px row (200 x 3 = 600) and
+  every logo renders at the same 140px, so the grid is even no matter how
+  different the source files are. line-height:0 / font-size:0 on the cells
+  kills the stray baseline gap under images that made the rows look
+  unequally spaced.
 
-  So for group 3 the only thing that survives is IMAGE PIXELS — no major
-  client inverts the inside of an image. That is why each logo file must
-  carry its own opaque light background (see the notes with this file);
-  a transparent PNG of a black logo goes black-on-dark and disappears.
-
-  The CSS below handles group 2 and softens group 3 where possible
-  ([data-ogsc] is the attribute Outlook.com adds when it inverts).
+  Logos are expected to be square tiles with their light background baked
+  into the file — that is what keeps them visible when a client forces
+  dark mode (Gmail iOS cannot be opted out of).
 -->
 <style type="text/css">
   :root { color-scheme: light dark; supported-color-schemes: light dark; }
 
-  /* Group 2: clients that let us define our own dark treatment.
-     Keep the panel light so the logo files still sit on white. */
   @media (prefers-color-scheme: dark) {
     .logo-wrap { background-color: #ffffff !important; }
     .logo-cell { background-color: #ffffff !important; }
   }
 
-  /* Group 3, partial: Outlook.com tags inverted elements with data-ogsc. */
   [data-ogsc] .logo-wrap, [data-ogsb] .logo-wrap { background-color: #ffffff !important; }
   [data-ogsc] .logo-cell, [data-ogsb] .logo-cell { background-color: #ffffff !important; }
 </style>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" class="logo-wrap" style="width:100%;border-collapse:collapse;background-color:#ffffff;">
   <tr>
-    <td align="center" style="padding:0;">
+    <td align="center" style="padding:10px 0;">
 
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#ffffff" class="logo-wrap" style="width:100%;max-width:600px;border-collapse:collapse;margin:0 auto;background-color:#ffffff;">
 
         <!-- Row 1 -->
         <tr>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/brooks?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/101_-_Brooks_Logo.png?v=1760962943" alt="Brooks" width="100"
-                   style="display:block;width:100%;max-width:100px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/7_1.png?v=1789649711" alt="Brooks" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/the-north-face-new-arrivals?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/The_North_Face_84b8d72d-ca57-45b3-81a2-2ba3eb2fec65.jpg?v=1683642170" alt="The North Face" width="90"
-                   style="display:block;width:100%;max-width:90px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/The_North_Face_84b8d72d-ca57-45b3-81a2-2ba3eb2fec65.jpg?v=1683642170&amp;width=300&amp;format=jpg" alt="The North Face" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/saucony?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/102_Saucony.png?v=1780556713" alt="Saucony" width="120"
-                   style="display:block;width:100%;max-width:120px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/Untitled_600_x_600_px.png?v=1789650520" alt="Saucony" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
         </tr>
 
         <!-- Row 2 -->
         <tr>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
-            <a href="https://lb.mikesport.com/collections/brands-asics?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/101_Asics_602e66e4-9250-4a2b-9dee-116d4151ddad.png" alt="ASICS" width="100"
-                   style="display:block;width:100%;max-width:100px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
+            <a href="https://lb.mikesport.com/collections/asics-new-arrivals?filter.v.availability=1" style="text-decoration:none;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/6_1.png?v=1789649711" alt="ASICS" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/new-balance-fall-2026?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/New_Balance_beb8bf87-f700-4276-899c-608034978d5c.png?v=1759754063" alt="New Balance" width="90"
-                   style="display:block;width:100%;max-width:90px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/3_2.png?v=1789649711" alt="New Balance" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/nike-fall-2026" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/101_Nike_46f141da-a65a-445f-b666-a6b83dac3970.png" alt="Nike" width="90"
-                   style="display:block;width:100%;max-width:90px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/4_2.png?v=1789649710" alt="Nike" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
         </tr>
 
         <!-- Row 3 -->
         <tr>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/adidas-fall-2026?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/Adidas_2632d8fc-69d5-4b83-93c9-e7185cc9ecb6.png?v=1759754044" alt="Adidas" width="90"
-                   style="display:block;width:100%;max-width:90px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/2_2.png?v=1789649710" alt="Adidas" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/erke-new-arrivals?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/101_Erke.png?v=1761222008" alt="ERKE" width="90"
-                   style="display:block;width:100%;max-width:90px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/5_2.png?v=1789649711" alt="ERKE" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
-          <td class="logo-cell" width="33.33%" align="center" valign="middle" bgcolor="#ffffff" style="width:33.33%;padding:16px 10px;background-color:#ffffff;text-align:center;">
+          <td class="logo-cell" width="200" align="center" valign="middle" bgcolor="#ffffff" style="width:200px;padding:14px 10px;background-color:#ffffff;text-align:center;line-height:0;font-size:0;">
             <a href="https://lb.mikesport.com/collections/on-fall-26?filter.v.availability=1" style="text-decoration:none;">
-              <img src="https://lb.mikesport.com/cdn/shop/files/101_ON.png?v=1761213575&amp;width=900" alt="On" width="100"
-                   style="display:block;width:100%;max-width:100px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
+              <img src="https://cdn.shopify.com/s/files/1/2277/0487/files/1_2.png?v=1789649691" alt="On" width="140"
+                   style="display:block;width:100%;max-width:140px;height:auto;margin:0 auto;border:0;outline:none;-ms-interpolation-mode:bicubic;">
             </a>
           </td>
         </tr>
