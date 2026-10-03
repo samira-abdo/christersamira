@@ -1,0 +1,149 @@
+{%- assign is_ar = false -%}
+{%- if request.locale.iso_code contains 'ar' -%}{%- assign is_ar = true -%}{%- endif -%}
+
+{% assign cl_product = all_products['letter-bag'] %}
+{% assign cl_banner = 'https://cdn.shopify.com/s/files/1/0995/3162/0715/files/Letter_Bag_Fungoofun.png?v=1783713684' %}
+
+{% assign color_index = -1 %}
+{% for option in cl_product.options_with_values %}
+  {% assign opt_name = option.name | downcase %}
+  {% if opt_name contains 'colo' %}
+    {% assign color_index = forloop.index0 %}
+    {% assign color_option = option %}
+  {% endif %}
+{% endfor %}
+
+<div class="cl-section">
+  <h2 class="cl-heading">{% if is_ar %}قطعة مميّزة{% else %}Signature Piece{% endif %}</h2>
+  <div class="cl-banner-wrap">
+    <div class="cl-banner-img">
+      <img src="{{ cl_banner }}" alt="{{ cl_product.title | escape }}">
+    </div>
+
+    <div class="cl-product">
+      <div class="cl-product-img">
+        <img src="{{ cl_product.featured_image | image_url: width: 800 }}" alt="{{ cl_product.title | escape }}" id="cl-main-img">
+      </div>
+      <p class="cl-vendor">{{ cl_product.vendor }}</p>
+      <h3 class="cl-title">{{ cl_product.title }}</h3>
+      <p class="cl-price" id="cl-price">{{ cl_product.selected_or_first_available_variant.price | money }}</p>
+
+      <form method="post" action="{{ routes.cart_add_url }}" class="cl-form">
+        <input type="hidden" name="id" id="cl-variant-id"
+          value="{{ cl_product.selected_or_first_available_variant.id }}">
+
+        {% if color_index > -1 %}
+          <div class="cl-swatches">
+            {% for value in color_option.values %}
+              <label class="cl-swatch" title="{{ value }}">
+                <input type="radio" name="cl-color" value="{{ value | escape }}"
+                  {% if value == color_option.selected_value %}checked{% endif %}>
+                <span style="background-color: {{ value | split: '-' | first }};"></span>
+              </label>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <button type="submit" class="cl-atc">{% if is_ar %}أضف إلى السلة{% else %}ADD TO CART{% endif %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .shopify-section:has(.cl-banner-wrap) { padding-top: 0 !important; }
+
+  .cl-section .cl-heading {
+    text-align: center !important;
+    font-size: clamp(32px, 4vw, 52px) !important;
+    font-weight: 400 !important;
+    line-height: 1.15 !important;
+    color: #111 !important;
+    margin: 0 0 36px !important;
+  }
+  .cl-section .cl-banner-wrap { display: flex; gap: 24px; align-items: stretch; }
+  .cl-section .cl-banner-img { flex: 1 1 55%; }
+  .cl-section .cl-banner-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
+  .cl-section .cl-product { flex: 1 1 45%; display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; padding: 16px; }
+  .cl-section .cl-product-img { background: #f4f4f4; border-radius: 20px; padding: 24px; width: 100%; max-width: 380px; }
+  .cl-section .cl-product-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
+
+  .cl-section .cl-vendor { margin: 18px 0 4px !important; font-size: 15px !important; color: #111 !important; }
+  .cl-section .cl-title {
+    margin: 0 0 8px !important;
+    font-size: clamp(24px, 2.4vw, 32px) !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    color: #111 !important;
+  }
+  .cl-section .cl-price {
+    margin: 0 0 18px !important;
+    font-size: clamp(20px, 2vw, 24px) !important;
+    font-weight: 500 !important;
+    color: #111 !important;
+  }
+
+  .cl-section .cl-swatches { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+  .cl-section .cl-swatch input { display: none; }
+  .cl-section .cl-swatch span { display: block; width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; }
+  .cl-section .cl-swatch input:checked + span { outline: 2px solid #000; outline-offset: 2px; }
+
+  .cl-section .cl-atc {
+    -webkit-appearance: none !important; appearance: none !important;
+    background: #FFEAD7 !important;
+    background-color: #FFEAD7 !important;
+    background-image: none !important;
+    color: #111 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 10px !important;
+    padding: 16px 40px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: .5px !important;
+    cursor: pointer;
+    width: 100%;
+    max-width: 320px;
+    transition: none !important;
+  }
+  .cl-section .cl-atc::before, .cl-section .cl-atc::after { display: none !important; content: none !important; }
+  .cl-section .cl-atc:hover, .cl-section .cl-atc:focus { background: #FFEAD7 !important; color: #111 !important; opacity: 1 !important; transform: none !important; }
+
+  @media screen and (max-width: 767px) {
+    .cl-section .cl-banner-wrap { flex-direction: column; }
+    .cl-section .cl-heading { margin-bottom: 24px !important; }
+  }
+</style>
+
+<script>
+  (function () {
+    var variants = {{ cl_product.variants | json }};
+    var colorIndex = {{ color_index }};
+    var moneyFormat = {{ shop.money_format | json }};
+    var idInput = document.getElementById('cl-variant-id');
+    var priceEl = document.getElementById('cl-price');
+    var mainImg = document.getElementById('cl-main-img');
+
+    function formatMoney(cents) {
+      var n = (cents / 100).toFixed(2);
+      var withCommas = n.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return moneyFormat
+        .replace(/\{\{\s*amount_no_decimals\s*\}\}/, Math.round(cents / 100))
+        .replace(/\{\{\s*amount_with_comma_separator\s*\}\}/, n.replace('.', ','))
+        .replace(/\{\{\s*amount\s*\}\}/, withCommas);
+    }
+
+    document.querySelectorAll('input[name="cl-color"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        var match = variants.find(function (v) {
+          return v.options[colorIndex] === radio.value && v.available;
+        }) || variants.find(function (v) { return v.options[colorIndex] === radio.value; });
+        if (match) {
+          idInput.value = match.id;
+          priceEl.textContent = formatMoney(match.price);
+          if (match.featured_image && match.featured_image.src) { mainImg.src = match.featured_image.src; }
+        }
+      });
+    });
+  })();
+</script>
