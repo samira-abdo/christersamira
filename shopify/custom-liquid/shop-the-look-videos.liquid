@@ -25,6 +25,8 @@
   #stl-custom .stl__track {
     display:flex; gap:var(--gap); overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
     -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    touch-action:pan-x pan-y; overscroll-behavior-x:contain;
+    flex-wrap:nowrap !important; width:100%;
   }
   #stl-custom .stl__track::-webkit-scrollbar { display:none; }
   #stl-custom .stl__card {
@@ -70,13 +72,17 @@
   @media (max-width:1199px) { #stl-custom { --per-view:4; } }
   @media (max-width:989px)  { #stl-custom { --per-view:3; --gap:16px; } }
   @media (max-width:749px)  {
-    #stl-custom { --per-view:1.6; --gap:12px; padding:40px 0 50px; }
-    #stl-custom .stl__heading { margin-bottom:28px !important; }
-    #stl-custom .stl__arrow { display:none !important; }
-    #stl-custom .stl__product { left:8px; right:8px; bottom:8px; padding:8px; gap:8px; }
-    #stl-custom .stl__thumb { flex-basis:44px; width:44px; height:44px; }
-    #stl-custom .stl__title { font-size:13px !important; }
-    #stl-custom .stl__price { font-size:12px !important; }
+    #stl-custom { --per-view:2; --gap:10px; padding:40px 0 50px; }
+    #stl-custom .stl__inner { padding:0 12px; }
+    #stl-custom .stl__heading { margin-bottom:24px !important; }
+    #stl-custom .stl__card { border-radius:14px; }
+    #stl-custom .stl__arrow { width:34px !important; height:34px !important; font-size:18px !important; }
+    #stl-custom .stl__arrow--prev { left:-4px; }
+    #stl-custom .stl__arrow--next { right:-4px; }
+    #stl-custom .stl__product { left:6px; right:6px; bottom:6px; padding:6px; gap:6px; border-radius:8px; }
+    #stl-custom .stl__thumb { flex-basis:34px; width:34px; height:34px; border-radius:6px; }
+    #stl-custom .stl__title { font-size:12px !important; margin-bottom:2px !important; }
+    #stl-custom .stl__price { font-size:11px !important; }
   }
 </style>
 
