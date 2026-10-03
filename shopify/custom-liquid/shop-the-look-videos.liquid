@@ -1,0 +1,163 @@
+{%- liquid
+  # ====== EDIT THESE ======
+  assign heading = 'Shop The Look'
+  # One video link per card (from Content > Files), separated by commas
+  assign video_urls = 'https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4,https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4,https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4,https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4,https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4' | split: ','
+  # One product handle per card, same order as the videos
+  assign product_handles = 'product-1,product-2,product-3,product-4,product-5' | split: ','
+  # ========================
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  #stl-custom { --gap:24px; --per-view:5; background:#f3eadf; padding:60px 0 70px; font-family:'DM Sans',sans-serif; }
+  #stl-custom .stl__inner { max-width:1400px; margin:0 auto; padding:0 16px; position:relative; }
+  #stl-custom .stl__heading {
+    text-align:center !important; margin:0 0 48px !important; font-family:'DM Sans',sans-serif !important;
+    font-size:clamp(28px,4vw,52px) !important; font-weight:400 !important; letter-spacing:-.02em !important;
+    text-transform:none !important; color:#111 !important;
+  }
+
+  /* Slider */
+  #stl-custom .stl__track {
+    display:flex; gap:var(--gap); overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  #stl-custom .stl__track::-webkit-scrollbar { display:none; }
+  #stl-custom .stl__card {
+    flex:0 0 calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
+    min-width:0; scroll-snap-align:start; position:relative; aspect-ratio:3/4;
+    border-radius:20px; overflow:hidden; background:#ddd;
+  }
+  #stl-custom .stl__card video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Product box over the video */
+  #stl-custom .stl__product {
+    position:absolute; left:12px; right:12px; bottom:12px; z-index:2;
+    display:flex; align-items:center; gap:12px; padding:12px;
+    background:#fff; border-radius:12px; text-decoration:none !important; color:#111 !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+  }
+  #stl-custom .stl__thumb { flex:0 0 56px; width:56px; height:56px; border-radius:10px; overflow:hidden; background:#f1cfa8; }
+  #stl-custom .stl__thumb img, #stl-custom .stl__thumb svg { width:100%; height:100%; object-fit:cover; display:block; }
+  #stl-custom .stl__text { min-width:0; }
+  #stl-custom .stl__title {
+    margin:0 0 4px !important; font-family:'DM Sans',sans-serif !important; font-size:15px !important; font-weight:500 !important;
+    line-height:1.3 !important; text-transform:none !important; letter-spacing:0 !important; color:#111 !important;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  #stl-custom .stl__price { margin:0 !important; font-size:14px !important; color:#111 !important; }
+  #stl-custom .stl__price s { opacity:.5; margin-left:6px; }
+
+  /* Arrows */
+  #stl-custom .stl__arrow {
+    -webkit-appearance:none !important; appearance:none !important;
+    position:absolute; top:50%; transform:translateY(-50%) !important; z-index:3;
+    width:44px !important; height:44px !important; min-width:0 !important; min-height:0 !important; padding:0 !important;
+    border-radius:50% !important; border:none !important; box-shadow:0 2px 10px rgba(0,0,0,.15) !important;
+    background:#fff !important; color:#111 !important; font-size:22px !important; line-height:1 !important;
+    display:flex !important; align-items:center; justify-content:center; cursor:pointer;
+  }
+  #stl-custom .stl__arrow::before, #stl-custom .stl__arrow::after { display:none !important; content:none !important; }
+  #stl-custom .stl__arrow[disabled] { opacity:0 !important; pointer-events:none; }
+  #stl-custom .stl__arrow--prev { left:4px; }
+  #stl-custom .stl__arrow--next { right:4px; }
+  #stl-custom .stl__slider { position:relative; }
+
+  @media (max-width:1199px) { #stl-custom { --per-view:4; } }
+  @media (max-width:989px)  { #stl-custom { --per-view:3; --gap:16px; } }
+  @media (max-width:749px)  {
+    #stl-custom { --per-view:1.6; --gap:12px; padding:40px 0 50px; }
+    #stl-custom .stl__heading { margin-bottom:28px !important; }
+    #stl-custom .stl__arrow { display:none !important; }
+    #stl-custom .stl__product { left:8px; right:8px; bottom:8px; padding:8px; gap:8px; }
+    #stl-custom .stl__thumb { flex-basis:44px; width:44px; height:44px; }
+    #stl-custom .stl__title { font-size:13px !important; }
+    #stl-custom .stl__price { font-size:12px !important; }
+  }
+</style>
+
+<div id="stl-custom">
+  <div class="stl__inner">
+    <h2 class="stl__heading">{{ heading }}</h2>
+
+    <div class="stl__slider">
+      <button type="button" class="stl__arrow stl__arrow--prev" aria-label="Previous">&#8249;</button>
+      <div class="stl__track">
+        {%- for url in video_urls -%}
+          {%- assign i = forloop.index0 -%}
+          {%- assign handle = product_handles[i] | strip -%}
+          {%- assign p = all_products[handle] -%}
+          <div class="stl__card">
+            <video muted loop playsinline preload="metadata" src="{{ url | strip }}"></video>
+
+            {%- if p != blank and p.id -%}
+              <a class="stl__product" href="{{ p.url }}">
+                <div class="stl__thumb">
+                  {%- if p.featured_media -%}
+                    {{ p.featured_media | image_url: width: 150 | image_tag: loading: 'lazy', alt: p.title }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </div>
+                <div class="stl__text">
+                  <h3 class="stl__title" title="{{ p.title | escape }}">{{ p.title }}</h3>
+                  <p class="stl__price">
+                    {{ p.price | money }}
+                    {%- if p.compare_at_price > p.price %} <s>{{ p.compare_at_price | money }}</s>{% endif -%}
+                  </p>
+                </div>
+              </a>
+            {%- elsif handle != blank -%}
+              <div class="stl__product"><div class="stl__text"><p class="stl__price">Product "{{ handle }}" not found</p></div></div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <button type="button" class="stl__arrow stl__arrow--next" aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('stl-custom');
+    if (!root) return;
+    var track = root.querySelector('.stl__track');
+    var prev = root.querySelector('.stl__arrow--prev');
+    var next = root.querySelector('.stl__arrow--next');
+
+    function step() {
+      var card = track.querySelector('.stl__card');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.offsetWidth + gap : track.clientWidth;
+    }
+    function update() {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+
+    // Play videos only while they are on screen
+    var videos = root.querySelectorAll('video');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) { v.muted = true; v.play().catch(function () {}); }
+          else { v.pause(); }
+        });
+      }, { threshold: 0.4 });
+      videos.forEach(function (v) { io.observe(v); });
+    } else {
+      videos.forEach(function (v) { v.autoplay = true; v.play().catch(function () {}); });
+    }
+  })();
+</script>
