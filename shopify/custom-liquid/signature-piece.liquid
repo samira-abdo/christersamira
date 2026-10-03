@@ -2,7 +2,7 @@
 {%- if request.locale.iso_code contains 'ar' -%}{%- assign is_ar = true -%}{%- endif -%}
 
 {% assign cl_product = all_products['letter-bag'] %}
-{% assign cl_banner = 'https://cdn.shopify.com/s/files/1/0995/3162/0715/files/Letter_Bag_Fungoofun.png?v=1783713684' %}
+{% assign cl_banner = 'https://cdn.shopify.com/s/files/1/0947/2357/2083/files/Chic_Cafe_Turn_with_Pink_Sculptural_Bag_1.png?v=1791065979' %}
 
 {% assign color_index = -1 %}
 {% for option in cl_product.options_with_values %}
@@ -55,7 +55,7 @@
 
   .cl-section .cl-heading {
     text-align: center !important;
-    font-size: clamp(32px, 4vw, 52px) !important;
+    font-size: clamp(32px, 4vw, 25px) !important;
     font-weight: 400 !important;
     line-height: 1.15 !important;
     color: #111 !important;
@@ -71,19 +71,21 @@
   .cl-section .cl-vendor { margin: 18px 0 4px !important; font-size: 15px !important; color: #111 !important; }
   .cl-section .cl-title {
     margin: 0 0 8px !important;
-    font-size: clamp(24px, 2.4vw, 32px) !important;
+    font-size: clamp(24px, 2.4vw, 20px) !important;
     font-weight: 500 !important;
     line-height: 1.2 !important;
     color: #111 !important;
   }
   .cl-section .cl-price {
     margin: 0 0 18px !important;
-    font-size: clamp(20px, 2vw, 24px) !important;
+    font-size: clamp(20px, 2vw, 20px) !important;
     font-weight: 500 !important;
     color: #111 !important;
   }
 
-  .cl-section .cl-swatches { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+  .cl-section .cl-swatches { display: flex; flex-wrap: nowrap; gap: 10px; justify-content: center; margin-bottom: 20px; max-width: 100%; overflow-x: auto; padding: 4px; scrollbar-width: none; }
+  .cl-section .cl-swatches::-webkit-scrollbar { display: none; }
+  .cl-section .cl-swatch { flex: 0 0 auto; }
   .cl-section .cl-swatch input { display: none; }
   .cl-section .cl-swatch span { display: block; width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; }
   .cl-section .cl-swatch input:checked + span { outline: 2px solid #000; outline-offset: 2px; }
@@ -112,6 +114,8 @@
   @media screen and (max-width: 767px) {
     .cl-section .cl-banner-wrap { flex-direction: column; }
     .cl-section .cl-heading { margin-bottom: 24px !important; }
+    .cl-section .cl-swatches { gap: 6px; }
+    .cl-section .cl-swatch span { width: 22px; height: 22px; }
   }
 </style>
 
