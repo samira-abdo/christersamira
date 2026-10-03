@@ -1,12 +1,8 @@
-{%- liquid
-  # ====== EDIT THESE ======
-  assign heading = 'Shop The Look'
-  # One video link per card (from Content > Files), separated by commas
-  assign video_urls = 'https://cdn.shopify.com/videos/c/o/v/6b03f702178f4e04b0bfe6e1c12f0b96.mp4,https://cdn.shopify.com/videos/c/o/v/7600008a0b874685aa33656851fc18cf.mp4,https://cdn.shopify.com/videos/c/o/v/e9f23ccb3c314e70aac1f50c07f4587e.mp4,https://cdn.shopify.com/videos/c/o/v/14fa5ebcf1474087a591ff63a3a16781.mp4,https://cdn.shopify.com/videos/c/o/v/691cbf45ae1f4c4a933b6525c06c8968.mp4' | split: ','
-  # One product handle per card, same order as the videos
-  assign product_handles = 'wheat-era-bag,balloon-bag,lightweight-laptop-bag-16-inch,sports-shoulder-bag,time-capsule-cosmetic-bag' | split: ','
-  # ========================
--%}
+{% comment %} ====== EDIT THESE: one video link and one product handle per card, same order ====== {% endcomment %}
+{% assign heading = 'Shop The Look' %}
+{% assign video_urls = 'https://cdn.shopify.com/videos/c/o/v/6b03f702178f4e04b0bfe6e1c12f0b96.mp4,https://cdn.shopify.com/videos/c/o/v/7600008a0b874685aa33656851fc18cf.mp4,https://cdn.shopify.com/videos/c/o/v/e9f23ccb3c314e70aac1f50c07f4587e.mp4,https://cdn.shopify.com/videos/c/o/v/14fa5ebcf1474087a591ff63a3a16781.mp4,https://cdn.shopify.com/videos/c/o/v/691cbf45ae1f4c4a933b6525c06c8968.mp4' | split: ',' %}
+{% assign product_handles = 'wheat-era-bag,balloon-bag,lightweight-laptop-bag-16-inch,sports-shoulder-bag,time-capsule-cosmetic-bag' | split: ',' %}
+{% comment %} ====== END ====== {% endcomment %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,35 +89,32 @@
     <div class="stl__slider">
       <button type="button" class="stl__arrow stl__arrow--prev" aria-label="Previous">&#8249;</button>
       <div class="stl__track">
-        {%- for url in video_urls -%}
-          {%- assign i = forloop.index0 -%}
-          {%- assign handle = product_handles[i] | strip -%}
-          {%- assign p = all_products[handle] -%}
+        {% for url in video_urls %}
+          {% assign handle = product_handles[forloop.index0] %}
+          {% assign p = all_products[handle] %}
           <div class="stl__card">
-            <video muted loop playsinline preload="metadata" src="{{ url | strip }}"></video>
+            <video muted loop playsinline preload="metadata" src="{{ url }}"></video>
 
-            {%- if p != blank and p.id -%}
+            {% if p.title != blank %}
               <a class="stl__product" href="{{ p.url }}">
                 <div class="stl__thumb">
-                  {%- if p.featured_media -%}
-                    {{ p.featured_media | image_url: width: 150 | image_tag: loading: 'lazy', alt: p.title }}
-                  {%- else -%}
-                    {{ 'product-1' | placeholder_svg_tag }}
-                  {%- endif -%}
+                  {% if p.featured_image %}
+                    <img src="{{ p.featured_image | image_url: width: 150 }}" alt="{{ p.title | escape }}" loading="lazy" width="150" height="150">
+                  {% endif %}
                 </div>
                 <div class="stl__text">
                   <h3 class="stl__title" title="{{ p.title | escape }}">{{ p.title }}</h3>
                   <p class="stl__price">
                     {{ p.price | money }}
-                    {%- if p.compare_at_price > p.price %} <s>{{ p.compare_at_price | money }}</s>{% endif -%}
+                    {% if p.compare_at_price > p.price %}<s>{{ p.compare_at_price | money }}</s>{% endif %}
                   </p>
                 </div>
               </a>
-            {%- elsif handle != blank -%}
-              <div class="stl__product"><div class="stl__text"><p class="stl__price">Product "{{ handle }}" not found</p></div></div>
-            {%- endif -%}
+            {% else %}
+              <div class="stl__product"><div class="stl__text"><p class="stl__price">Product not found: {{ handle }}</p></div></div>
+            {% endif %}
           </div>
-        {%- endfor -%}
+        {% endfor %}
       </div>
       <button type="button" class="stl__arrow stl__arrow--next" aria-label="Next">&#8250;</button>
     </div>
