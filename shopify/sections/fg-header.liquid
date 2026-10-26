@@ -8,9 +8,13 @@
 {%- endif -%}
 
 {%- comment -%}
-  Nav links are managed from the theme editor: Header section > "Link" blocks.
-  Each block has a URL, an English label and an Arabic label.
-  If no blocks have been added yet, the default links below are shown.
+  Nav links can be managed from the theme editor: Header section > "Link" blocks.
+  If no blocks are added, the default links below are used.
+  Each default link lists several possible collection handles (the UAE and
+  Lebanon stores name some collections differently). The first handle that
+  exists in the current store is used, so the same code works in both stores.
+  A link whose collection is not found in the store is hidden instead of
+  showing a 404 page.
 {%- endcomment -%}
 
 {%- capture fg_nav_links -%}
@@ -32,17 +36,35 @@
 <a href="{{ fg_url }}" {{ block.shopify_attributes }}>{{ fg_label | escape }}</a>
   {%- endfor -%}
 {%- else -%}
-<a href="{{ lp }}/collections/new-arrival">{% if is_ar %}جديد!{% else %}New!{% endif %}</a>
-<a href="{{ lp }}/collections/hand-bag">{% if is_ar %}حقائب اليد{% else %}Handbags{% endif %}</a>
-<a href="{{ lp }}/collections/shoulder-bag">{% if is_ar %}حقائب الكتف{% else %}Shoulder Bags{% endif %}</a>
-<a href="{{ lp }}/collections/crossbody-bag">{% if is_ar %}حقائب كروس بودي{% else %}Crossbody Bags{% endif %}</a>
-<a href="{{ lp }}/collections/travel-bags">{% if is_ar %}حقائب السفر{% else %}Travel Bags{% endif %}</a>
-<a href="{{ lp }}/collections/cosmetic-storage-bags">{% if is_ar %}حقائب التجميل والتخزين{% else %}Cosmetic & Storage Bags{% endif %}</a>
-<a href="{{ lp }}/collections/laptop-bags">{% if is_ar %}حقائب اللابتوب{% else %}Laptop Bags{% endif %}</a>
-<a href="{{ lp }}/collections/specialty-bags">{% if is_ar %}حقائب مميزة{% else %}Specialty Bags{% endif %}</a>
-<a href="{{ lp }}/collections/sport-bags">{% if is_ar %}الحقائب الرياضية{% else %}Sport Bags{% endif %}</a>
-<a href="{{ lp }}/collections/tote-bags">{% if is_ar %}حقائب توت{% else %}Tote Bags{% endif %}</a>
-<a href="{{ lp }}/collections/bag-assessories">{% if is_ar %}إكسسوارات الحقائب{% else %}Bag Accessories{% endif %}</a>
+  {%- capture fg_defaults -%}
+new-arrivals,new-arrival,new,new-arrivals-1|New!|جديد!;;
+hand-bag,hand-bags,handbags,handbag|Handbags|حقائب اليد;;
+shoulder-bag,shoulder-bags|Shoulder Bags|حقائب الكتف;;
+crossbody-bag,crossbody-bags,cross-body-bags|Crossbody Bags|حقائب كروس بودي;;
+travel-bags,travel-bag|Travel Bags|حقائب السفر;;
+cosmetic-storage-bags,cosmetic-and-storage-bags,cosmetic-bags|Cosmetic & Storage Bags|حقائب التجميل والتخزين;;
+laptop-bags,laptop-bag|Laptop Bags|حقائب اللابتوب;;
+specialty-bags,speciality-bags,specialty-bag|Specialty Bags|حقائب مميزة;;
+sport-bags,sports-bags,sport-bag|Sport Bags|الحقائب الرياضية;;
+tote-bags,tote-bag|Tote Bags|حقائب توت;;
+bag-assessories,bag-accessories,accessories|Bag Accessories|إكسسوارات الحقائب
+  {%- endcapture -%}
+  {%- assign fg_items = fg_defaults | split: ';;' -%}
+  {%- for fg_item in fg_items -%}
+    {%- assign fg_parts = fg_item | strip | split: '|' -%}
+    {%- assign fg_handles = fg_parts[0] | split: ',' -%}
+    {%- assign fg_found = nil -%}
+    {%- for fg_handle in fg_handles -%}
+      {%- assign fg_col = collections[fg_handle] -%}
+      {%- if fg_col.id != blank -%}
+        {%- assign fg_found = fg_col -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if fg_found -%}
+<a href="{{ fg_found.url }}">{% if is_ar %}{{ fg_parts[2] }}{% else %}{{ fg_parts[1] | escape }}{% endif %}</a>
+    {%- endif -%}
+  {%- endfor -%}
 {%- endif -%}
 {%- endcapture -%}
 
