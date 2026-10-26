@@ -13,8 +13,7 @@
   Each default link lists several possible collection handles (the UAE and
   Lebanon stores name some collections differently). The first handle that
   exists in the current store is used, so the same code works in both stores.
-  A link whose collection is not found in the store is hidden instead of
-  showing a 404 page.
+  If none is found, the link uses the first handle in its list.
 {%- endcomment -%}
 
 {%- capture fg_nav_links -%}
@@ -37,7 +36,7 @@
   {%- endfor -%}
 {%- else -%}
   {%- capture fg_defaults -%}
-new-arrivals,new-arrival,new,new-arrivals-1|New!|جديد!;;
+new-arrivals,new-arrival|New!|جديد!;;
 hand-bag,hand-bags,handbags,handbag|Handbags|حقائب اليد;;
 shoulder-bag,shoulder-bags|Shoulder Bags|حقائب الكتف;;
 crossbody-bag,crossbody-bags,cross-body-bags|Crossbody Bags|حقائب كروس بودي;;
@@ -62,8 +61,11 @@ bag-assessories,bag-accessories,accessories|Bag Accessories|إكسسوارات �
       {%- endif -%}
     {%- endfor -%}
     {%- if fg_found -%}
-<a href="{{ fg_found.url }}">{% if is_ar %}{{ fg_parts[2] }}{% else %}{{ fg_parts[1] | escape }}{% endif %}</a>
+      {%- assign fg_href = fg_found.url -%}
+    {%- else -%}
+      {%- assign fg_href = lp | append: '/collections/' | append: fg_handles[0] -%}
     {%- endif -%}
+<a href="{{ fg_href }}">{% if is_ar %}{{ fg_parts[2] }}{% else %}{{ fg_parts[1] | escape }}{% endif %}</a>
   {%- endfor -%}
 {%- endif -%}
 {%- endcapture -%}
